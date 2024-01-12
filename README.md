@@ -7,116 +7,27 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Installazione Laravel
+# Laravel Boolfolio - Base
 
-```bash
-cd your parent_folder_path
+### Description:
 
-#con laravel installer
-laravel new your_project_name_here
+Creare un sistema di gestione del nostro Portfolio di progetti
 
-#per versione 9
-composer create-project --prefer-dist laravel/laravel:^9.2 your_project_name_here
+### Milestone 1:
 
-cd your_project_name_here
+Creare un layout back-office accessibile tramite autenticazione e seccessivamente un model Project con relative migration, seeder, controller, validazioni e rotte
 
-code . -r
+### Milestone 2
 
-php artisan serve
+-   creare un controller per gestire tutte le operazioni CRUD dei progetti
+-   creare tutte le view necessarie per il funzionamento del sito
+-   implementare, tramite button, le varie funzioni per la visualizzazione e la modifica dei dati
 
-ctrl + c
+### Bonus:
 
-```
-## Configurazione Laravel
-```bash
-npm remove postcss
+Implementare un template per una dashboard di amministrazione
 
-#installo dbal per migration e seeder
-composer require doctrine/dbal
-
-composer require guzzlehttp/guzzle
-
-composer require laravel/breeze --dev
-php artisan breeze:install #blade
-
-
-composer require pacificdev/laravel_9_preset
-
-#solo per versione 9
-php artisan preset:ui bootstrap --auth
-
-npm install bootstrap axios @fortawesome/fontawesome-free sass
-
-#in vite config aggiungo agli alias
-'~@fortawesome': path.resolve(__dirname, 'node_modules/@fortawesome'),
-
-#copio la cartella dei webfont e se voglio la rinomino e la copio nella cartella font
-
-#app.js
-import "./bootstrap";
-import "~resources/scss/app.scss";
-import * as bootstrap from "bootstrap";
-import.meta.glob(["../img/**", "../fonts/**"]);
-
-#app.scss
-@use './partials/variables' as *;
-
-$fa-font-path: "../fonts/webfonts" !default;
-
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/regular";
-@import "~@fortawesome/fontawesome-free/scss/solid";
-@import "~@fortawesome/fontawesome-free/scss/brands";
-
-@import '~bootstrap/scss/bootstrap';
-
-h1 {
-    color: $text-color;
-}
-
-#vite.config.js
-import { defineConfig } from "vite";
-import laravel from "laravel-vite-plugin";
-import * as path from "path";
-
-export default defineConfig({
-    plugins: [
-        laravel({
-            input: ["resources/scss/app.scss", "resources/js/app.js"],
-            refresh: true,
-        }),
-    ],
-    // Add resolve object and aliases
-    resolve: {
-        alias: {
-            "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
-            "~@fortawesome": path.resolve(
-                __dirname,
-                "node_modules/@fortawesome"
-            ),
-            "~resources": "/resources/",
-        },
-    },
-});
-
-#sistemo (cambio/rimuovo) template e routing
-
-#volendo personalizzo paginazione e pagine di errore
-php artisan vendor:publish --tag=laravel-errors
-php artisan vendor:publish --tag=laravel-pagination
-
-#comandi git
-
-git init
-git add .
-git commit -m "first commit"
-git branch -M main
-git remote add origin your_git_url 
-git push -u origin main
-
-
-```
-## Clono progetto da github 
+## Clono progetto da github
 
 ```bash
 # copio file .env.example e lo rinomino in .env
@@ -148,7 +59,7 @@ php artisan make:seeder UsersTableSeeder
 
 php artisan db:seed --class=UsersTableSeeder
 
-# preparo le rotte file web.php es. 
+# preparo le rotte file web.php es.
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 # oppure resource route per tutte le operazioni CRUD
 Route::resource('books', BookController::class);
@@ -160,18 +71,19 @@ php artisan make:controller NomeController --resource
 
 
 #creo model
-php artisan make:model Nome 
+php artisan make:model Nome
 #posso creare il model e contestualmente resource controller, migration, seeder e form request per validazioni
 php artisan make:model Nome -rcms --requests
 
 # creo le views relative
 
 #creo form request per validazione
-	
+
 php artisan make:request StoreMomemodelRequest
 
 
 ```
+
 ## Auth
 
 ```bash
