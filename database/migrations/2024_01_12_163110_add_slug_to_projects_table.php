@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->string('slug', 255)->unique()->default(1)->after('title');
+            $table->string('slug', 255)->unique()->after('title');
         });
     }
 
