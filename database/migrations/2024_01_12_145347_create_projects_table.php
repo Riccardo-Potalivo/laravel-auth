@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('title', 150)->unique();
             $table->string('name', 200)->unique();
             $table->text('description')->nullable();
-            $table->string('repository', 200)->required();
+            $table->string('repository', 255)->required();
 
             $table->timestamps();
         });
