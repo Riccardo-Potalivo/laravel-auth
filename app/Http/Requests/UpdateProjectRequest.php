@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class UpdateProjectRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class UpdateProjectRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,25 @@ class UpdateProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['required', 'max:150', Rule::unique('projects')->ignore($this->project)],
+            'name' => ['required', 'max:200', Rule::unique('projects')->ignore($this->project)],
+            'description' => 'nullable',
+            'repository' => 'required|url|max:255'
         ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Il titolo è obbligatorio',
+            'title.max' => 'Il titolo non può avere più di :max caratteri',
+            'title.unique' => 'Questo titolo esiste già',
+            'name.required' => 'Il nome della repository è obbligatorio',
+            'name.max' => 'Il nome della repository non può avere più di :max caratteri',
+            'name.unique' => 'Esiste già una reporitory con lo stesso nome',
+            'repository.url' => 'il link della rapository deve essere di tipo url'
+
+        ];
+
     }
 }
