@@ -27,7 +27,8 @@ class UpdateProjectRequest extends FormRequest
             'title' => ['required', 'max:150', Rule::unique('projects')->ignore($this->project)],
             'name' => ['required', 'max:200', Rule::unique('projects')->ignore($this->project)],
             'description' => 'nullable',
-            'repository' => 'required|url|max:255'
+            'repository' => 'required|url|max:255',
+            'image' => 'nullable|mimes:jpg,png|max:1000'
         ];
     }
 
@@ -40,8 +41,9 @@ class UpdateProjectRequest extends FormRequest
             'name.required' => 'Il nome della repository è obbligatorio',
             'name.max' => 'Il nome della repository non può avere più di :max caratteri',
             'name.unique' => 'Esiste già una reporitory con lo stesso nome',
-            'repository.url' => 'il link della rapository deve essere di tipo url'
-
+            'repository.url' => 'il link della rapository deve essere di tipo url',
+            'image.mimes' => 'il file deve essere di tipo .jpg o .png',
+            'image.max' => 'il file può pesare massimo :max Mb'
         ];
 
     }
