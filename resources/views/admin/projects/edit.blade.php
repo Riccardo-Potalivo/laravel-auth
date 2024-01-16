@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Edit {{ $project->title }}</h1>
-        <form action="{{ route('admin.projects.update', $project->id) }}" method="POST">
+        <form action="{{ route('admin.projects.update', $project->id) }}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
 
@@ -26,6 +26,15 @@
             </div>
 
             <div class="mb-3">
+                <label for="repository">Repository</label>
+                <input type="url" class="form-control @error('repository') is-invalid @enderror" name="repository"
+                    id="repository" maxlength="255" value="{{ old('repository', $project->repository) }}">
+                @error('repository')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
                 <label for="description">Description</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
                     cols="30" rows="10">{{ old('description', $project->description) }}
@@ -36,10 +45,10 @@
             </div>
 
             <div class="mb-3">
-                <label for="repository">Repository</label>
-                <input type="url" class="form-control @error('repository') is-invalid @enderror" name="repository"
-                    id="repository" maxlength="255" value="{{ old('repository', $project->repository) }}">
-                @error('repository')
+                <label for="image">Image</label>
+                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
+                    id="image" maxlength="255" value="{{ old('image', $project->image) }}">
+                @error('image')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
